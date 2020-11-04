@@ -1,7 +1,220 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "sam": {
+      "root": "apps/sam",
+      "sourceRoot": "apps/sam/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/sam",
+            "index": "apps/sam/src/index.html",
+            "main": "apps/sam/src/main.tsx",
+            "polyfills": "apps/sam/src/polyfills.ts",
+            "tsConfig": "apps/sam/tsconfig.app.json",
+            "assets": ["apps/sam/src/favicon.ico", "apps/sam/src/assets"],
+            "styles": ["apps/sam/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/sam/src/environments/environment.ts",
+                  "with": "apps/sam/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "sam:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "sam:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sam/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/sam/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "sam-e2e": {
+      "root": "apps/sam-e2e",
+      "sourceRoot": "apps/sam-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/sam-e2e/cypress.json",
+            "tsConfig": "apps/sam-e2e/tsconfig.e2e.json",
+            "devServerTarget": "sam:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sam:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sam-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "postulacion": {
+      "root": "apps/postulacion",
+      "sourceRoot": "apps/postulacion/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/postulacion",
+            "index": "apps/postulacion/src/index.html",
+            "main": "apps/postulacion/src/main.tsx",
+            "polyfills": "apps/postulacion/src/polyfills.ts",
+            "tsConfig": "apps/postulacion/tsconfig.app.json",
+            "assets": [
+              "apps/postulacion/src/favicon.ico",
+              "apps/postulacion/src/assets"
+            ],
+            "styles": ["apps/postulacion/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/postulacion/src/environments/environment.ts",
+                  "with": "apps/postulacion/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "postulacion:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "postulacion:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/postulacion/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/postulacion/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "postulacion-e2e": {
+      "root": "apps/postulacion-e2e",
+      "sourceRoot": "apps/postulacion-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/postulacion-e2e/cypress.json",
+            "tsConfig": "apps/postulacion-e2e/tsconfig.e2e.json",
+            "devServerTarget": "postulacion:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "postulacion:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/postulacion-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "sam"
 }

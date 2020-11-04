@@ -22,5 +22,20 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "sam": {
+      "tags": []
+    },
+    "sam-e2e": {
+      "tags": [],
+      "implicitDependencies": ["sam"]
+    },
+    "postulacion": {
+      "tags": []
+    },
+    "postulacion-e2e": {
+      "tags": [],
+      "implicitDependencies": ["postulacion"]
+    }
+  }
 }
